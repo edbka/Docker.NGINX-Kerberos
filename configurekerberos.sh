@@ -17,7 +17,7 @@ cat > /etc/krb5.conf << EOF
     proxiable            = false
 
 [realms]
-    FABRIC.LOCAL = {
+    $uppercasedomain = {
         kdc            = $dc.$lowercasedomain 
 	admin_server   = $dc.$lowercasedomain 
 	default_domain = $lowercasedomain 
@@ -25,7 +25,7 @@ cat > /etc/krb5.conf << EOF
 
 [domain_realm]
     .kerberos.server = $uppercasedomain 
-    .fabric.local    = $uppercasedomain 
+    .$lowercasedomain = $uppercasedomain 
 EOF
 echo "kerberos configured as: "
 cat /etc/krb5.conf

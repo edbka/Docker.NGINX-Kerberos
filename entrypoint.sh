@@ -1,4 +1,5 @@
 #!/bin/bash
+./opt/install/configuredns.sh $domain $dc $dcip
 ./opt/install/configurekerberos.sh $domain $dc
 ./opt/install/configurenginx.sh $localhost $domain $remoteport
 ./opt/install/setupkeytab.sh $username $domain $password $kvno

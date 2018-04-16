@@ -11,7 +11,9 @@ RUN apt-get update -y -qq && apt-get install -y --no-install-recommends \
 	libpcre3-dev \
 	zlib1g-dev \
 	krb5-user \
-	git
+	git	\
+	ca-certificates \
+	iputils-ping
 
 RUN cd /usr/src && mkdir nginx \
 	&& curl -fSL https://nginx.org/download/nginx-1.11.13.tar.gz -o nginx.tar.gz \
@@ -31,6 +33,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY setupkeytab.sh /opt/install/setupkeytab.sh
 COPY configurenginx.sh /opt/install/configurenginx.sh
 COPY configurekerberos.sh /opt/install/configurekerberos.sh
+COPY configuredns.sh /opt/install/configuredns.sh
 COPY entrypoint.sh /opt/install/entrypoint.sh
 #COPY default.conf /etc/nginx/conf.d/default.conf
 #COPY krb5.conf /etc/krb5.conf
@@ -38,6 +41,7 @@ COPY entrypoint.sh /opt/install/entrypoint.sh
 RUN chmod +x /opt/install/setupkeytab.sh \
     #&& chmod +x /opt/install/signintoactivedirectory.sh \
     && chmod +x /opt/install/configurenginx.sh \
+    && chmod +x /opt/install/configuredns.sh \
     && chmod +x /opt/install/configurekerberos.sh \
     && chmod +x /opt/install/entrypoint.sh
 
