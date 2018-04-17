@@ -32,4 +32,5 @@ $ docker run -e domain='' -e dc='' -e dcip='' -e localhost='<dockerAccount>' -e 
 ```
 
 ## Remarks
- When connecting to nginx you shold use DNS name and not ip in order for the web browser user kerberso and not NTLM 
+ When connecting to nginx you shold use DNS name and not ip in order for the web browser user kerberso and not NTLM\
+ The  user will be in the basic authorization header
