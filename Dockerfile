@@ -16,7 +16,7 @@ RUN apt-get update -y -qq && apt-get install -y --no-install-recommends \
 	iputils-ping
 
 RUN cd /usr/src && mkdir nginx \
-	&& curl -fSL https://nginx.org/download/nginx-1.11.13.tar.gz -o nginx.tar.gz \
+	&& curl -fSL https://nginx.org/download/nginx-1.13.12.tar.gz -o nginx.tar.gz \
 	&& tar -xzf nginx.tar.gz -C nginx --strip-components=1
 
 RUN cd /usr/src/nginx \
@@ -34,9 +34,11 @@ COPY setupkeytab.sh /opt/install/setupkeytab.sh
 COPY configurenginx.sh /opt/install/configurenginx.sh
 COPY configurekerberos.sh /opt/install/configurekerberos.sh
 COPY configuredns.sh /opt/install/configuredns.sh
+
 COPY entrypoint.sh /opt/install/entrypoint.sh
 #COPY default.conf /etc/nginx/conf.d/default.conf
 #COPY krb5.conf /etc/krb5.conf
+COPY *.keytab /etc/nginx/
 
 RUN chmod +x /opt/install/setupkeytab.sh \
     #&& chmod +x /opt/install/signintoactivedirectory.sh \

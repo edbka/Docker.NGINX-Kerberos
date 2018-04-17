@@ -4,14 +4,15 @@ localhost=$1
 domain=$2
 uppercasedomain=${domain^^}
 lowercasedomain=${domain,,}
-remoteport=$3
+remoteip=$3
+remoteport=$4
 cat > /etc/nginx/conf.d/default.conf << EOF
 server {
         server_name $localhost.$lowercasedomain;
 
 	listen 80;
 	location / {
-		proxy_pass http://localhost:$remoteport;
+		proxy_pass http://$remoteip:$remoteport;
 		proxy_http_version 1.1;
 		proxy_set_header Upgrade \$http_upgrade;
 		proxy_set_header Connection keep-alive;
