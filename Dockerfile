@@ -20,7 +20,7 @@ RUN cd /usr/src && mkdir nginx \
 	&& tar -xzf nginx.tar.gz -C nginx --strip-components=1
 
 RUN cd /usr/src/nginx \
-	&& git clone https://github.com/stnoonan/spnego-http-auth-nginx-module.git
+	&& git clone https://github.com/nirko-rnd/spnego-http-auth-nginx-module.git
 
 RUN cd /usr/src/nginx \
 	&& ./configure --with-compat --add-dynamic-module=spnego-http-auth-nginx-module \
