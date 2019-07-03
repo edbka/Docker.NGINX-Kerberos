@@ -25,26 +25,4 @@ RUN cd /usr/src/nginx \
 RUN cd /usr/src/nginx \
 	&& ./configure --with-compat --add-dynamic-module=spnego-http-auth-nginx-module \
 	&& make modules \
-	&& cp objs/ngx_http_auth_spnego_module.so /etc/nginx/modules/ 
-
-COPY nginx.conf /etc/nginx/nginx.conf
-#ADD https://healthcatalyst.github.io/InstallScripts/setupkeytab.txt /opt/install/setupkeytab.sh
-#ADD https://healthcatalyst.github.io/InstallScripts/signintoactivedirectory.txt /opt/install/signintoactivedirectory.sh
-COPY setupkeytab.sh /opt/install/setupkeytab.sh
-COPY configurenginx.sh /opt/install/configurenginx.sh
-COPY configurekerberos.sh /opt/install/configurekerberos.sh
-COPY configuredns.sh /opt/install/configuredns.sh
-
-COPY entrypoint.sh /opt/install/entrypoint.sh
-#COPY default.conf /etc/nginx/conf.d/default.conf
-#COPY krb5.conf /etc/krb5.conf
-COPY *.keytab /etc/nginx/
-
-RUN chmod +x /opt/install/setupkeytab.sh \
-    #&& chmod +x /opt/install/signintoactivedirectory.sh \
-    && chmod +x /opt/install/configurenginx.sh \
-    && chmod +x /opt/install/configuredns.sh \
-    && chmod +x /opt/install/configurekerberos.sh \
-    && chmod +x /opt/install/entrypoint.sh
-
-ENTRYPOINT ["/opt/install/entrypoint.sh"]
+	&& cp objs/ngx_http_auth_spnego_module.so /etc/nginx/modules/
