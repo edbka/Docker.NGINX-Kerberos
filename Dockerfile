@@ -1,4 +1,4 @@
-FROM nginx
+FROM nginx:1.13.12
 
 ENV DEBIAN_FRONTEND=noninteractive
 
